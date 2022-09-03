@@ -1,4 +1,4 @@
-let allCharacters = document.querySelector("#AllCharacters");
+let allCharacters = document.getElementById("AllCharacters");
 let females = document.querySelector("#FemalesCharacters");
 let males = document.querySelector("#MalesCharacters");
 let alive = document.querySelector("#AliveCharacters");
@@ -10,6 +10,8 @@ males.addEventListener("click", selectMales);
 alive.addEventListener("click", selectAlive);
 dead.addEventListener("click", selectDead);
 
+const url= "https://rickandmortyapi.com/api/character"
+
 // function selectAllCharacthers(){
 //     alert("Seleccionaste categoria All");
 //     console.log("Aqui están todos los personajes")
@@ -17,15 +19,16 @@ dead.addEventListener("click", selectDead);
 // }
 
 function selectAllCharacthers(done){
-    const results = fetch("https://rickandmortyapi.com/api/character");
-    results
-        .then(response => response.json())
+    fetch(url)    
+        .then(res => res.json())
             .then(data=>{
+                
                 done(data)
     });
 }
+
 selectAllCharacthers(data => {
-    // console.log(data)
+    console.log(data)
 
     data.results.forEach(personaje => {
 
@@ -47,6 +50,8 @@ selectAllCharacthers(data => {
     const section = document.querySelector("section");
 
     section.append(article)
+    let parrafocharacters= document.getElementById("characters");
+    parrafocharacters.style.display = "none";
     });
 } )
 
